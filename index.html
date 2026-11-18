@@ -444,15 +444,15 @@ input.invalid { border-color: var(--accent); }
   const state = { shade: 0, shape: "almond", svc: "gel", day: 0, time: null };
 
   function fanSVG(paint, shape, opts = {}) {
-    const angles = [-28, -14, 0, 14, 28];
-    const scales = [0.82, 0.94, 1, 0.94, 0.8];
+    const angles = [-26, -13, 0, 13, 26];
+    const scales = [0.86, 0.95, 1, 0.95, 0.86];
     return angles.map((a, i) => {
       const fill = typeof paint === "function" ? paint(i) : paint;
       const s = scales[i];
-      return `<g transform="translate(200 290) rotate(${a}) translate(${-35 * s} ${-250 * s}) scale(${s})">
-        <path d="${SHAPES[shape]}" class="tip-fill" fill="${fill}" transform="scale(1.6)" stroke="rgba(0,0,0,.12)" stroke-width="0.6"/>
+      return `<g transform="translate(200 420) rotate(${a}) translate(${-42 * s} ${-400 * s}) scale(${s * 1.9})">
+        <path d="${SHAPES[shape]}" class="tip-fill" fill="${fill}" stroke="rgba(0,0,0,.14)" stroke-width="0.4"/>
         ${opts.extra ? opts.extra(i) : ""}
-        ${opts.matte ? "" : `<path d="${SHINE}" transform="scale(1.6)" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round" fill="none"/>`}
+        ${opts.matte ? "" : `<path d="${SHINE}" stroke="rgba(255,255,255,.55)" stroke-width="1.8" stroke-linecap="round" fill="none"/>`}
       </g>`;
     }).join("");
   }
@@ -478,7 +478,7 @@ input.invalid { border-color: var(--accent); }
     { title: "Френч на миндале", meta: "2 300 ₽", shape: "almond",
       defs: id => `<clipPath id="${id}c"><path d="${SHAPES.almond}"/></clipPath>`,
       paint: () => "#F1D9D2",
-      extra: id => () => `<g transform="scale(1.6)" clip-path="url(#${id}c)"><path d="M-5 30 Q22 18 49 30 L49 -5 L-5 -5 Z" fill="#FFFFFF"/></g>` },
+      extra: id => () => `<g clip-path="url(#${id}c)"><path d="M-5 30 Q22 18 49 30 L49 -5 L-5 -5 Z" fill="#FFFFFF"/></g>` },
     { title: "Омбре «пыльная роза»", meta: "2 400 ₽", shape: "oval",
       defs: id => `<linearGradient id="${id}g" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#F3E3DD"/><stop offset="1" stop-color="#C27C84"/></linearGradient>`,
       paint: id => `url(#${id}g)` },
@@ -487,11 +487,11 @@ input.invalid { border-color: var(--accent); }
       paint: id => `url(#${id}g)` },
     { title: "Нюд с золотом", meta: "2 000 ₽", shape: "oval",
       paint: () => "#E4C3B5",
-      extra: () => i => (i === 1 || i === 3) ? `<circle cx="35" cy="128" r="6" fill="#C9A24E"/><circle cx="35" cy="110" r="3" fill="#C9A24E"/>` : "" },
+      extra: () => i => (i === 1 || i === 3) ? `<circle cx="22" cy="80" r="3.6" fill="#C9A24E"/><circle cx="22" cy="69" r="1.8" fill="#C9A24E"/>` : "" },
     { title: "Матовый графит", meta: "1 900 ₽", shape: "square", matte: true, paint: () => "#2E2D33" },
     { title: "Вишня с акцентом", meta: "2 100 ₽", shape: "almond",
       paint: () => i => i === 2 ? "#F4EEE8" : "#8E1330",
-      extra: () => i => i === 2 ? `<path d="M35 120 c-6 -8 -16 -2 -10 6 l10 10 l10 -10 c6 -8 -4 -14 -10 -6z" fill="#8E1330"/>` : "" }
+      extra: () => i => i === 2 ? `<path d="M22 70 c-3.5 -5 -10 -1.2 -6.2 3.8 l6.2 6.2 l6.2 -6.2 c3.8 -5 -2.7 -8.8 -6.2 -3.8z" fill="#8E1330"/>` : "" }
   ];
   $("works-grid").innerHTML = WORKS.map((w, k) => {
     const id = "w" + k;
