@@ -444,12 +444,12 @@ input.invalid { border-color: var(--accent); }
   const state = { shade: 0, shape: "almond", svc: "gel", day: 0, time: null };
 
   function fanSVG(paint, shape, opts = {}) {
-    const angles = [-26, -13, 0, 13, 26];
-    const scales = [0.86, 0.95, 1, 0.95, 0.86];
+    const angles = [-31, -15.5, 0, 15.5, 31];
+    const scales = [0.8, 0.92, 1, 0.92, 0.8];
     return angles.map((a, i) => {
       const fill = typeof paint === "function" ? paint(i) : paint;
       const s = scales[i];
-      return `<g transform="translate(200 420) rotate(${a}) translate(${-42 * s} ${-400 * s}) scale(${s * 1.9})">
+      return `<g transform="translate(200 420) rotate(${a}) translate(${-37.4 * s} ${-400 * s}) scale(${s * 1.7})">
         <path d="${SHAPES[shape]}" class="tip-fill" fill="${fill}" stroke="rgba(0,0,0,.14)" stroke-width="0.4"/>
         ${opts.extra ? opts.extra(i) : ""}
         ${opts.matte ? "" : `<path d="${SHINE}" stroke="rgba(255,255,255,.55)" stroke-width="1.8" stroke-linecap="round" fill="none"/>`}
